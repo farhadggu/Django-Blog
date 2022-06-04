@@ -1,0 +1,92 @@
+version: '3.4'
+
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9-alpine
+    hostname: "rabbit1"
+    environment:
+      - RABBITMQ_DEFAULT_USER=farhad
+      - RABBITMQ_DEFAULT_PASS=lorazpam79
+    networks:
+      - main
+    ports:
+      - "5672:5672"
+    restart: on-failure
+
+  postgres:
+    container_name: postgres
+    image: postgres:13.6-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=lorazpam
+      - POSTGRES_DB=blog
+    networks:
+      - main
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    command: sh -c "python manage.py migrate && gunicorn blog.wsgi -b 0.0.0.0:8000"
+    container_name: app
+    volumes:
+      - .:/code/
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "8000:8000"
+    networks:
+      - main
+    restart: on-failure
+
+  celery_worker:
+    command: celery -A blog worker -l info
+    container_name: celery_worker
+    depends_on:
+      - app
+      - postgres
+      - rabbitmq
+    build: .
+    environment:
+      - C_FORCE_ROOT="true"
+    networks:
+      - main
+    restart: on-failure
+
+  celery_beat:
+    command: celery -A blog beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    container_name: celery_beat
+    depends_on:
+      - app
+      - postgres
+      - rabbitmq
+    build: .
+    networks:
+      - main
+    restart: always
+
+  nginx:
+    container_name: nginx
+    command: nginx -g 'daemon off;'
+    depends_on:
+      - app
+    image: nginx:latest
+    networks:
+      - main
+    ports:
+      - "80:80"
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+networks:
+  main:
+
+volumes:
+  postgres_data:

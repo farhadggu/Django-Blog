@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}پروفایل{% endblock title %}
+
+{% block content %}
+
+    <!-- Start Author Area  -->
+    <div class="axil-author-area axil-author-banner bg-color-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-author">
+                        <div class="media">
+                            <div class="thumbnail">
+                                <a href="#">
+                                    {% if request.user.profile.image %}
+                                    <img src="{{request.user.profile.image.url}}" style="width:100px; height:100px;" alt="Author Images">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/simple.png' %}" style="width:100px; height:100px;" alt="Author Images">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="author-info">
+                                    <h1 class="title"><a href="#">{{request.user.profile.full_name}}</a></h1>
+                                </div>
+                                <div class="content">
+                                    <p class="b1 description">{{request.user.profile.bio}}</p>
+                                    <a href="{% url 'account:profile' %}" class="b1 description btn btn-primary">مشاهده پروفایل</a>
+                                    {% if request.user.is_author %}
+                                        <p class="b1 description btn btn-success">نویسنده</p>
+                                    {% else %}
+                                        <p class="b1 description btn btn-info">کاربر عادی</p>
+                                    {% endif %}
+                                    <ul class="social-share-transparent size-md">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="far fa-envelope"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                    <hr/>
+                                    <a href="{% url 'tickets:tickets' %}" class="b1 description">لیست تیکت ها</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Author Area  -->
+
+    <form method="post" action="{% url 'account:update_phone' %}" class='container mt-5 mb-5'>
+        {% csrf_token %}
+        <lable>شماره تلفن:</lable>
+        <div class='form-group'>
+            <input type="text" value="{{user.phone}}" class="form-control" name="phone">
+            <button type="submit" class="b1 description btn btn-primary">تغییر شماره تلفن</button>
+        </div>
+    </form>
+
+    <form method="post" action="{% url 'account:email-activate' %}" class='container'>
+        {% csrf_token %}
+        <lable>ایمیل کاربری:</lable>
+        <div class='form-group'>
+            <input type="text" value="{{user.email}}" class="form-control", name="email">
+            <button type="submit" class="b1 description btn btn-primary">فعالسازی</button>
+        </div>
+    </form>
+
+    <form method="post" action="{% url 'account:change_username' %}" class='container'>
+        {% csrf_token %}
+        <lable>نام کاربری:</lable>
+        <div class='form-group'>
+            <input type="text" value="{{user.username}}" class="form-control" name="username">
+            <button type="submit" class="b1 description btn btn-primary">تغییر نام کاربری</button>
+        </div>
+    </form>
+    
+
+    <form method="post" enctype="multipart/form-data" class='container mt-5 mb-5'>
+        {% csrf_token %}
+        <lable>نام:</lable>
+        <div class='form-group'>{{form.first_name}}</div>
+        <lable>نام خانوادگی:</lable>
+        <div class='form-group'>{{form.last_name}}</div>
+        <lable>توضیحات درباره خود:</lable>
+        <div class='form-group'>{{form.bio}}</div>
+        <lable>کد ملی:</lable>
+        <div class='form-group'>{{form.national_code}}</div>
+        <lable>تصویر پروفایل:</lable>
+        <div class='form-group'>{{form.image}}</div>
+        <br/>
+        <div class="col-12">
+            <div class="form-submit">
+                <button type="submit" class="axil-button button-rounded btn-x">ویرایش</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock content %}

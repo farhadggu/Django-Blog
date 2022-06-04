@@ -1,0 +1,65 @@
+{% extends 'panel/base.html' %}
+{% block title %}ایجاد مقاله{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-12 mt-5">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">ویرایش پست</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form method="post" role="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">دسته بندی</label>
+            {{form.category}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">تیتر</label>
+            {{form.title}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">اسلاگ</label>
+            {{form.slug}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">توضیحات</label>
+            {{form.description}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">تصویر</label>
+            {{form.image}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">در اسلایدر نمایش داده شود؟</label>
+            {{form.slider_show}}
+          </div>
+          {% if request.user.is_admin %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">وضعیت</label>
+            {{form.status}}
+          </div>
+          {% endif %}
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success">ویرایش</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.card -->
+
+  </div>
+
+{% endblock content %}

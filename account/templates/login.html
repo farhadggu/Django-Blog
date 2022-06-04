@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}ثبت نام{% endblock title %}
+
+{% block content %}
+
+<div class="axil-post-list-area axil-section-gap bg-color-white">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-xl-12">
+
+                <div class="axil-about-us">
+
+                    <div class="axil-section-gapTop axil-contact-form-area">
+                        <h4 class="title mb--10">ورود کاربر</h4>
+                        <form method="post" class="row">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {% if request.user.email_activate %}
+                                    <label for="contact-name">ایمیل / نام کاربری شما</label>
+                                    {% else %}
+                                    <label for="contact-name">نام کاربری شما</label>
+                                    {% endif %}
+                                    {{form.email}}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="contact-phone">رمز عبور</label>
+                                    {{form.password}}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-submit">
+                                    <button type="submit" class="axil-button button-rounded btn-primary">ورود</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}تیکت ها{% endblock title %}
+
+
+{% block content %}
+
+    <!-- Start Post Single Wrapper  -->
+    <div class="post-single-wrapper axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="axil-post-details">
+
+                        <!-- Start Comment Form Area  -->
+                        <div class="axil-comment-area">
+
+                            <!-- Start Comment Respond  -->
+                            <form class='mb-5' method="post">
+                                {% csrf_token %}
+                                {{form.choice}}
+                                {{form.body}}
+                                <br/>
+                                <div class="col-12">
+                                    <div class="form-submit">
+                                        <button type="submit" class="axil-button button-rounded btn-primary">ثبت تیکت</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr/>
+
+                            <!-- Start Comment Area  -->
+                            <div class="axil-comment-area">
+                                <h4 class="title">تیکت ها</h4>
+                                <ul class="comment-list">
+                                    {% for ticket in tickets %}
+                                    <!-- Start Single Comment  -->
+                                    <li class="comment">
+                                        <ul class="children">
+                                            <!-- Start Single Comment  -->
+                                            {% for ticket in ticket.admin_ticket.all %}
+                                            <li class="comment bg-light" style='direction:ltr;'>
+                                                <div class="comment-body">
+                                                    <div class="single-comment">
+                                                        <div class="comment-img">
+                                                            <img src="{% static 'assets/images/post-images/author/author-b2.png' %}" alt="Author Images">
+                                                        </div>
+                                                        <div class="comment-inner">
+                                                            <h6 class="commenter">
+                                                                <a class="hover-flip-item-wrapper" href="#">
+                                                                    <span class="hover-flip-item">
+                                                                        <span data-text="Admin">Admin</span>
+                                                                    </span>
+                                                                </a>
+                                                            </h6>
+                                                            <div class="comment-meta">
+                                                                <div class="time-spent">{{ticket.created}}</div>
+                                                            </div>
+                                                            <div class="comment-text">
+                                                                <p class="b2">{{ticket.body}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            <!-- End Single Comment  -->
+                                        </ul>
+
+                                        <div class="comment-body">
+                                            <div class="single-comment">
+                                                <div class="comment-img">
+                                                    <img src="{{ticket.user.profile.image.url}}" style="width:70px; height:70px;" alt="Author Images">
+                                                </div>
+                                                <div class="comment-inner">
+                                                    <h6 class="commenter">
+                                                        <a class="hover-flip-item-wrapper" href="#">
+                                                            <span class="hover-flip-item">
+                                                                <span data-text="{{ticket.user.profile.full_name}}">{{ticket.user.profile.full_name}}</span>
+                                                            </span>
+                                                        </a>
+                                                    </h6>
+                                                    <div class="comment-meta">
+                                                        <div class="time-spent">{{ticket.created}}</div>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p class="b2">{{ticket.body}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- End Single Comment  -->
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                            <!-- End Comment Area  -->
+
+                        </div>
+                        <!-- End Comment Form Area  -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Post Single Wrapper  -->
+
+{% endblock content %}

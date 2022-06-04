@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}نویسنده {{user.profile.full_name}}{% endblock title %}
+
+{% block content %}
+
+    <!-- Start Author Area  -->
+    <div class="axil-author-area axil-author-banner bg-color-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-author">
+                        <div class="media">
+                            <div class="thumbnail">
+                                <a href="#">
+                                    {% if user.profile.image %}
+                                    <img src="{{user.profile.image.url}}" style="width:100px; height:100px;" alt="Author Images">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/simple.png' %}" style="width:100px; height:100px;" alt="Author Images">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="author-info">
+                                    <h1 class="title"><a href="#">{{user.profile.full_name}}</a></h1>
+                                </div>
+                                <div class="content">
+                                    <p class="b1 description">{{user.profile.bio}}</p>
+                                    <ul class="social-share-transparent size-md">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="far fa-envelope"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                    <hr/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Author Area  -->
+    {% if user.is_author %}
+    <h3 class="pt-5 pr-5">پست های ایجاد شده توسط {{user.profile.full_name}}</h3>
+    <!-- Start Post List Wrapper  -->
+    <div class="axil-post-list-area axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row">
+                {% for post in user.post_user.all %}
+                <div class="col-lg-6 col-xl-6 mt-4">
+                    <!-- Start Post List  -->
+                    <div class="content-block post-list-view mt--30">
+                        <div class="post-thumbnail">
+                            <a href="post-details.html">
+                                <img src="{{post.image.url}}" alt="Post Images">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <h4 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h4>
+                            <div class="post-meta-wrapper">
+                                <div class="post-meta">
+                                    <div class="content">
+                                        <h6 class="post-author-name">
+                                            <a class="hover-flip-item-wrapper" href="author.html">
+                                                <span class="hover-flip-item">
+                                                    <span data-text="{{post.user.profile.full_name}}">{{post.user.profile.full_name}}</span>
+                                                </span>
+                                            </a>
+                                        </h6>
+                                        <ul class="post-meta-list">
+                                            <li>{{post.jcreated}}</li>
+                                            <li>{{post.visit_count.count}} بازدید</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Post List  -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End Post List Wrapper  -->
+    {% endif %}
+
+{% endblock content %}

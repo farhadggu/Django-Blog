@@ -1,0 +1,118 @@
+{% load static %}
+
+<!-- Start Header -->
+<header class="header axil-header  header-light header-sticky header-with-shadow">
+    <div class="header-wrap">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
+                <div class="logo">
+                    <a href="index.html">
+                        <img class="dark-logo" src="{% static 'assets/images/logo/logo-black.png' %}" alt="Blogar logo">
+                        <img class="light-logo" src="{% static 'assets/images/logo/logo-white2.png' %}" alt="Blogar logo">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-xl-6 d-none d-xl-block">
+                <div class="mainmenu-wrapper">
+                    <nav class="mainmenu-nav">
+                        <!-- Start Mainmanu Nav -->
+                        <ul class="mainmenu">
+                            <li class="menu-item-has-children"><a href="{% url 'home:home' %}">خانه</a>
+                            </li>
+                            {% for category in categories %}
+                            <li class="menu-item-has-children"><a href="{% url 'home:category' category.slug %}">{{category.title}}</a>
+                                <ul class="axil-submenu">
+                                    {% for children in category.category_parent.all %}
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="{% url 'home:category' children.slug %}">
+                                            <span class="hover-flip-item">
+                <span data-text="{{children.title}}">{{children.title}}</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'account:logout' %}">خروج</a></li>
+                            {% else %}
+                            <li><a href="{% url 'account:login' %}">ورود</a></li>
+                            <li><a href="{% url 'account:register' %}">ثبت نام</a></li>
+                            {% endif %}
+                        </ul>
+                        <!-- End Mainmanu Nav -->
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
+                <div class="header-search text-right d-flex align-items-center">
+                    <form action="{% url 'home:search' %}" class="header-search-form">
+                        <div class="axil-search form-group">
+                            <button type="submit" class="search-button"><i class="fal fa-search"></i></button>
+                            {{form.search}}
+                        </div>
+                    </form>
+                    <ul class="metabar-block">
+                        <li class="icon"><a href="#"><i class="fas fa-bookmark"></i></a></li>
+                        <li class="icon"><a href="#"><i class="fas fa-bell"></i></a></li>
+                        {% if request.user.profile.image %}
+                        <li><a href="{% url 'account:profile' %}"><img src="{{request.user.profile.image.url}}" alt="Author Images"></a></li>
+                        {% else %}
+                        <li><a href="{% url 'account:profile' %}"><img src="{% static 'assets/images/simple.png' %}" alt="Author Images"></a></li>
+                        {% endif %}
+                    </ul>
+                    <!-- Start Hamburger Menu  -->
+                    <div class="hamburger-menu d-block d-xl-none">
+                        <div class="hamburger-inner">
+                            <div class="icon"><i class="fal fa-bars"></i></div>
+                        </div>
+                    </div>
+                    <!-- End Hamburger Menu  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Start Header -->
+
+<!-- Start Mobile Menu Area  -->
+<div class="popup-mobilemenu-area">
+    <div class="inner">
+        <div class="mobile-menu-top">
+            <div class="logo">
+                <a href="index.html">
+                    <img class="dark-logo" src="{% static 'assets/images/logo/logo-black.png' %}" alt="Logo Images">
+                    <img class="light-logo" src="{% static 'assets/images/logo/logo-white2.png' %}" alt="Logo Images">
+                </a>
+            </div>
+            <div class="mobile-close">
+                <div class="icon">
+                    <i class="fal fa-times"></i>
+                </div>
+            </div>
+        </div>
+        <ul class="mainmenu">
+            <li class="menu-item-has-children"><a href="#">خانه</a>
+            </li>
+            {% for category in categories %}
+            <li class="menu-item-has-children"><a href="{{category.get_absolute_url}}">{{category.title}}</a>
+                <ul class="axil-submenu">
+                    {% for category in category.category_parent.all %}
+                    <li><a href="{{category.get_absolute_url}}">{{category.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+            <li><a href="404.html">صفحه 404</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+        <div class="buy-now-btn">
+            <a href="#">خرید <span class="badge"> تومان 15000</span></a>
+        </div>
+    </div>
+</div>
+<!-- End Mobile Menu Area  -->

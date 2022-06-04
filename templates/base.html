@@ -1,0 +1,323 @@
+{% load static %}
+{% load render_partial %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>بلاگ فارسی-{% block title %}{% endblock title %}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+
+    <!-- CSS
+    ============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/base.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/rtl.css' %}">
+
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        {% render_partial 'home:navbar' %}
+
+        {% include 'inc/messages.html' %}
+
+        {% block content %}{% endblock content %}
+
+        <!-- Start Instagram Area  -->
+        <div class="axil-instagram-area axil-section-gap bg-color-grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 class="title">اینستاگرام</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt--30">
+                    <div class="col-lg-12">
+                        <ul class="instagram-post-list">
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-01.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-02.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-03.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-04.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-05.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                            <li class="single-post">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/small-images/instagram-md-06.jpg' %}" alt="Instagram Images">
+                                    <span class="instagram-button"><i class="fab fa-instagram"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Instagram Area  -->
+
+        <!-- Start Footer Area  -->
+        <div class="axil-footer-area axil-footer-style-1 footer-variation-2">
+            <div class="footer-mainmenu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">جهان</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">فیلم ها</a></li>
+                                        <li><a href="#">درگیری ها</a></li>
+                                        <li><a href="#">تروریسم</a></li>
+                                        <li><a href="#">بلایا</a></li>
+                                        <li><a href="#">اقتصاد جهانی</a></li>
+                                        <li><a href="#">محیط</a></li>
+                                        <li><a href="#">دین</a></li>
+                                        <li><a href="#">رسوائی ها</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">سیاست</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">اجرایی</a></li>
+                                        <li><a href="#">سنا</a></li>
+                                        <li><a href="#">خانه</a></li>
+                                        <li><a href="#">دادگستری</a></li>
+                                        <li><a href="#">اقتصاد جهانی</a></li>
+                                        <li><a href="#">سیاست خارجی</a></li>
+                                        <li><a href="#">نظرسنجی ها</a></li>
+                                        <li><a href="#">انتخابات</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">سرگرمی</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">اخبار افراد مشهور</a></li>
+                                        <li><a href="#">فیلم ها</a></li>
+                                        <li><a href="#">اخبار تلویزیون</a></li>
+                                        <li><a href="#">بلایا</a></li>
+                                        <li><a href="#">اخبار موسیقی</a></li>
+                                        <li><a href="#">محیطt</a></li>
+                                        <li><a href="#">اخبار سبک</a></li>
+                                        <li><a href="#">فیلم سرگرمی</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">کسب و کار</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">محیط</a></li>
+                                        <li><a href="#">درگیری ها</a></li>
+                                        <li><a href="#">تروریسم</a></li>
+                                        <li><a href="#">بلایا</a></li>
+                                        <li><a href="#">اقتصاد جهانی</a></li>
+                                        <li><a href="#">محیط</a></li>
+                                        <li><a href="#">دین</a></li>
+                                        <li><a href="#">رسوائی ها</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">سلامتی</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">فیلم ها</a></li>
+                                        <li><a href="#">درگیری ها</a></li>
+                                        <li><a href="#">تروریسم</a></li>
+                                        <li><a href="#">بلایا</a></li>
+                                        <li><a href="#">اقتصاد جهانی</a></li>
+                                        <li><a href="#">محیط</a></li>
+                                        <li><a href="#">دین</a></li>
+                                        <li><a href="#">رسوائی ها</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget">
+                                <h2 class="title">درباره</h2>
+                                <div class="inner">
+                                    <ul class="ft-menu-list">
+                                        <li><a href="#">فیلم ها</a></li>
+                                        <li><a href="#">درگیری ها</a></li>
+                                        <li><a href="#">تروریسم</a></li>
+                                        <li><a href="#">بلایا</a></li>
+                                        <li><a href="#">اقتصاد جهانی</a></li>
+                                        <li><a href="#">محیط</a></li>
+                                        <li><a href="#">دین</a></li>
+                                        <li><a href="#">رسوائی ها</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start Footer Area  -->
+        <div class="axil-footer-area axil-footer-style-1 bg-color-white">
+            <!-- Start Footer Top Area  -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Start Post List  -->
+                            <div class="inner d-flex align-items-center flex-wrap">
+                                <h5 class="follow-title mb--0 mr--20">دنبال کنید</h5>
+                                <ul class="social-icon color-tertiary md-size justify-content-start">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- End Post List  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Top Area  -->
+
+            <!-- Start Copyright Area  -->
+            <div class="copyright-area">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-12">
+                            <div class="copyright-left">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img class="dark-logo" src="assets/images/logo/logo-black.png" alt="Logo Images">
+                                        <img class="light-logo" src="assets/images/logo/logo-white2.png" alt="Logo Images">
+                                    </a>
+                                </div>
+                                <ul class="mainmenu justify-content-start">
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="#">
+                                            <span class="hover-flip-item">
+                                        <span data-text="تماس با ما">تماس با ما</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="#">
+                                            <span class="hover-flip-item">
+                                        <span data-text="شرایط و ضوابط">شرایط و ضوابط</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="#">
+                                            <span class="hover-flip-item">
+                                        <span data-text="تبلیغات">تبلیغات</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="#">
+                                            <span class="hover-flip-item">
+                                        <span data-text="درباره ما">درباره ما</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="hover-flip-item-wrapper" href="#">
+                                            <span class="hover-flip-item">
+                                        <span data-text="فروشگاه بلاگ">فروشگاه بلاگ</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12">
+                            <div class="copyright-right text-left text-lg-right mt_md--20 mt_sm--20">
+                                <p class="b3">کلیه حقوق محفوظ است 1400</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Copyright Area  -->
+        </div>
+        <!-- End Footer Area  -->
+
+        <!-- Start Back To Top  -->
+        <a id="backto-top"></a>
+        <!-- End Back To Top  -->
+
+    </div>
+
+    <!-- JS
+============================================ -->
+    <!-- Modernizer JS -->
+    <script src="{% static 'assets/js/vendor/modernizr.min.js' %}"></script>
+    <!-- jQuery JS -->
+    <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/slick.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/tweenmax.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/js.cookie.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery.style.switcher.js' %}"></script>
+
+
+    <!-- Main JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+
+
+</html>

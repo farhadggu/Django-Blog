@@ -1,0 +1,91 @@
+{% extends 'panel/base.html' %}
+{% block title %}لیست مقالات{% endblock title %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">لیست مقالات</h3>
+
+          <div class="card-tools">
+            <form action="{% url 'panel:search' %}" class="input-group input-group-sm" style="width: 150px;">
+              {{form.search}}
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+          <hr/>
+          <div class="card-tools">
+            <form action="{% url 'panel:post_list' %}" method="get">
+              <p>فیلتر <b>کل پست ها</b> بر اساس منتشر شده / پیش نویس:</p>
+              <p>{{filter.form.status}}</p>
+              <button class="btn-sm btn-success" type="submit">اعمال فیلتر</button>
+            </form>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>شماره</th>
+                <th>مقاله</th>
+                <th>تصویر</th>
+                <th>نویسنده</th>
+                <th>تاریخ</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'panel:update_post' post.id %}">{{post.title}}</a></td>
+                <td><img src="{{post.image.url}}" width="60px" height="60px" /></td>
+                <td><a href="{% url 'account:author' post.user.username %}" class="tag tag-success">{{post.user.profile.full_name}}</a href=""></td>
+                <td>{{post.jcreated}}</td>
+                <td>
+                    <a class="badge badge-danger" href="{% url 'panel:delete_post' post.id %}">حذف</a>
+                    {% if post.status == 'p' %}
+                    <span class="badge badge-success">منتشر شده</span>
+                    {% else %}
+                    <span class="badge badge-warning">پیش نویس</span>
+                    {% endif %}
+                    <a class="badge badge-primary" href="{% url 'home:detail' post.slug %}">نمایش</a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <ul class="pagination mt-3 justify-content-center pagination_style1">
+        {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}&{{data}}">قبلی</a></li>
+        {% endif %}
+        {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}&{{data}}">{{ posts.previous_page_number }}</a></li>
+        {% endif %}
+            <li class="page-item {% if page_num == page_num %}active{% endif %}"><a class="page-link" href="?page={{ posts.number }}&{{ data }}">{{posts.number}}</a></li>
+        {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}&{{ data }}">{{ posts.next_page_number }}</a></li>
+        {% endif %}
+        {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}&{{ data }}">بعدی</a></li>
+        {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}

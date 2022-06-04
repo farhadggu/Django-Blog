@@ -1,0 +1,513 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}صفحه اصلی{% endblock title %}
+
+{% block content %}
+
+    <!-- Start Banner Area -->
+    <h1 class="d-none">خانه پیش فرض</h1>
+    <div class="slider-area bg-color-grey">
+        <div class="axil-slide slider-style-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slider-activation axil-slick-arrow">
+                            {% for post in slider_posts %}
+                                <!-- Start Single Slide  -->
+                                <div class="content-block">
+                                    <!-- Start Post Thumbnail  -->
+                                    <div class="post-thumbnail">
+                                        <a href="post-details.html">
+                                            <img src="{{post.image.url}}" style="height:600px;" alt="{{post.title}}">
+                                        </a>
+                                    </div>
+                                    <!-- End Post Thumbnail  -->
+
+                                    <!-- Start Post Content  -->
+                                    <div class="post-content">
+                                        <div class="post-cat">
+                                            <div class="post-cat-list">
+                                                <a class="hover-flip-item-wrapper" href="#">
+                                                    <span class="hover-flip-item">
+                                                        <span data-text="{{post.category.title}}">{{post.title}}</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <h2 class="title"><a href="post-details.html">{{post.title}}</a></h2>
+                                        <!-- Post Meta  -->
+                                        <div class="post-meta-wrapper with-button">
+                                            <div class="post-meta">
+                                                <div class="post-author-avatar border-rounded">
+                                                    <img src="{{post.user.profile.image.url}}" style="width:70px; height:70px;" alt="Author Images">
+                                                </div>
+                                                <div class="content">
+                                                    <h6 class="post-author-name">
+                                                        <a class="hover-flip-item-wrapper" href="author.html">
+                                                            <span class="hover-flip-item">
+                                                                <span data-text="{{post.user.profile.full_name}}">{{post.user.profile.full_name}}</span>
+                                                            </span>
+                                                        </a>
+                                                    </h6>
+                                                    <ul class="post-meta-list">
+                                                        <li>{{post.jcreated}}</li>
+                                                        <li>{{post.visit_count.count}} بازدید</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="read-more-button cerchio">
+                                                <a class="axil-button button-rounded hover-flip-item-wrapper" href="{{post.get_absolute_url}}">
+                                                    <span class="hover-flip-item">
+                                                        <span data-text="خواندن مقاله">خواندن مقاله</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Post Content  -->
+                                </div>
+                                <!-- End Single Slide  -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner Area -->
+
+    <!-- Start Featured Area  -->
+    <div class="axil-featured-post axil-section-gap bg-color-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2 class="title">مقاله ویژه</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for post in vip_posts %}
+                <!-- Start Single Post  -->
+                <div class="col-lg-6 col-xl-6 col-md-12 col-12 mt--30">
+                    <div class="content-block content-direction-column axil-control is-active post-horizontal thumb-border-rounded">
+                        <div class="post-content">
+                            <div class="post-cat">
+                                <div class="post-cat-list">
+                                    <a class="hover-flip-item-wrapper">
+                                        {% for category in post.category.all %}
+                                        <span class="hover-flip-item">
+                                            <span data-text="{{category.title}} ,">{{category.title}} ,</span>
+                                        </span>
+                                        {% endfor %}
+                                    </a>
+                                </div>
+                            </div>
+                            <h4 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h4>
+                            <div class="post-meta">
+                                <div class="post-author-avatar border-rounded">
+                                    <img src="{{post.user.profile.image.url}}" style="width:50px; height:50px;" alt="Author Images">
+                                </div>
+                                <div class="content">
+                                    <h6 class="post-author-name">
+                                        <a class="hover-flip-item-wrapper" href="{% url 'account:author' post.user.username %}">
+                                            <span class="hover-flip-item">
+                                                <span data-text="{{post.user.profile.full_name}}">{{post.user.profile.full_name}}</span>
+                                            </span>
+                                        </a>
+                                    </h6>
+                                    <ul class="post-meta-list">
+                                        <li>{{post.jcreated}}</li>
+                                        <li>{{post.visit_count.count}} بازدید</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-thumbnail">
+                            <a href="{{post.get_absolute_url}}">
+                                <img src="{{post.image.url}}" style="width:300px; height:200px;" alt="Post Images">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Post  -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End Featured Area  -->
+
+    <!-- Start Tab Area  -->
+    <div class="axil-tab-area axil-section-gap bg-color-white">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="axil-banner mb--30">
+                            <div class="thumbnail">
+                                <a href="#">
+                                    <img class="w-100" src="{% static 'assets/images/add-banner/banner-03.png' %}" alt="Banner Images">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 class="title">نوآوری و تکنولوژی</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Start Tab Button  -->
+                        <ul class="axil-tab-button nav nav-tabs mt--20" id="axilTab" role="tablist">
+                            {% for category in categories %}
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link {% if forloop.first %}active{% endif %}" id="tab-{{category.id}}" data-toggle="tab" href="#tab{{category.id}}" role="tab" aria-controls="tab-{{category.id}}" aria-selected="true">{{category.title}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- End Tab Button  -->
+
+                        <!-- Start Tab Content Wrapper  -->
+                        <div class="tab-content" id="axilTabContent">
+                            {% for category in categories %}
+                            <div class="single-tab-content tab-pane fade {% if forloop.first %}show active{% endif %}" id="tab{{category.id}}" role="tabpanel" aria-labelledby="tab-{{category.id}}">
+                                <div class="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side">
+
+                                    {% for post in category.post_category.all %}
+                                    <!-- Start Single Post  -->
+                                    <div class="slick-single-layout">
+                                        <div class="content-block modern-post-style text-center content-block-column">
+                                            <div class="post-content">
+                                                <div class="post-cat">
+                                                    <div class="post-cat-list">
+                                                        <a class="hover-flip-item-wrapper">
+                                                            {% for category in post.category.all %}
+                                                            <span class="hover-flip-item">
+                                                                <span data-text="{{category.title}}, ">{{category.title}}, </span>
+                                                            </span>
+                                                            {% endfor %}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <h4 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h4>
+                                            </div>
+                                            <div class="post-thumbnail">
+                                                <a href="{{post.get_absolute_url}}">
+                                                    <img src="{{post.image.url}}" style="height:300px;" alt="Post Images">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Post  -->
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- End Tab Content Wrapper  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Tab Area  -->
+
+    <!-- Start Categories List  -->
+    <div class="axil-categories-list axil-section-gap bg-color-grey">
+        <div class="container">
+            <div class="row align-items-center mb--30">
+                <div class="col-lg-6 col-md-8 col-sm-8 col-12">
+                    <div class="section-title">
+                        <h2 class="title">دسته بندی ها</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start List Wrapper  -->
+                    <div class="list-categories d-flex flex-wrap">
+                        {% for category in categories %}
+                        <!-- Start Single Category  -->
+                        <div class="single-cat">
+                            <div class="inner">
+                                <a href="{{category.get_absolute_url}}">
+                                    <div class="thumbnail">
+                                        <img src="{% static 'assets/images/post-images/post-sm-04.jpg' %}" alt="post categories images">
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="title">{{category.title}}</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Single Category  -->
+                        {% endfor %}
+                    </div>
+                    <!-- Start List Wrapper  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Categories List  -->
+
+    <!-- Start Trending Post Area  -->
+    <div class="axil-trending-post-area axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2 class="title">محبوب ترین ها</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Axil Tab Button  -->
+                    <ul class="axil-tab-button nav nav-tabs mt--20" role="tablist">
+                        {% for category in categories %}
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link {% if forloop.first %}active{% endif %}" id="trend-{{category.slug}}" data-toggle="tab" href="#trend{{category.slug}}" role="tab" aria-controls="trend-{{category.slug}}" aria-selected="true">{{category.title}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- End Axil Tab Button  -->
+
+                    <!-- Start Axil Tab Content  -->
+                    <div class="tab-content">
+                        {% for category in categories %}
+                        <!-- Single Tab Content  -->
+                        <div class="row trend-tab-content tab-pane fade {% if forloop.first %}show active{% endif %}" id="trend{{category.slug}}" role="tabpanel" aria-labelledby="trend-{{category.slug}}">
+                            <div class="col-lg-8">
+                                {% for post in category.post_category.all %}
+                                <!-- Start Single Post  -->
+                                <div class="content-block trend-post post-order-list axil-control">
+                                    <div class="post-inner">
+                                        <span class="post-order-list">{{forloop.counter}}</span>
+                                        <div class="post-content">
+                                            <div class="post-cat">
+                                                <div class="post-cat-list">
+                                                    <a class="hover-flip-item-wrapper">
+                                                        {% for category in post.category.all %}
+                                                        <span class="hover-flip-item">
+                                                            <span data-text="{{category.title}}">{{category.title}}</span>
+                                                        </span>
+                                                        {% endfor %}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <h3 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                                            <div class="post-meta-wrapper">
+                                                <div class="post-meta">
+                                                    <div class="content">
+                                                        <h6 class="post-author-name">
+                                                            <a class="hover-flip-item-wrapper" href="{% url 'account:author' post.user.username %}">
+                                                                <span class="hover-flip-item">
+                                                                    <span data-text="{{post.user.profile.full_name}}">{{post.user.profile.full_name}}</span>
+                                                                </span>
+                                                            </a>
+                                                        </h6>
+                                                        <ul class="post-meta-list">
+                                                            <li>{{post.jcreated}}</li>
+                                                            <li>{{post.visit_count.count}} بازدید</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-thumbnail">
+                                        <a href="{{post.get_absolute_url}}">
+                                            <img src="{{post.image.url}}" alt="Post Images">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <!-- Single Tab Content  -->
+                        {% endfor %}
+                    </div>
+                    <!-- End Axil Tab Content  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Trending Post Area  -->
+
+    <!-- Start Post List Wrapper  -->
+    <div class="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-xl-8">
+                    <div class="axil-banner">
+                        <div class="thumbnail">
+                            <a href="#">
+                                <img class="w-100" src="{% static 'assets/images/add-banner/banner-01.png' %}" alt="Banner Images">
+                            </a>
+                        </div>
+                    </div>
+                    {% for post in posts %}
+                    <!-- Start Post List  -->
+                    <div class="content-block post-list-view axil-control is-active mt--30">
+                        <div class="post-thumbnail">
+                            <a href="{{post.get_absolute_url}}">
+                                <img src="{{post.image.url}}" style="height:300px;" alt="Post Images">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-cat">
+                                <div class="post-cat-list">
+                                    <a class="hover-flip-item-wrapper" href="#">
+                                        {% for category in post.category.all %}
+                                        <span class="hover-flip-item">
+                                            <span data-text="{{category.title}}, ">{{category.title}}, </span>
+                                        </span>
+                                        {% endfor %}
+                                    </a>
+                                </div>
+                            </div>
+                            <h4 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h4>
+                            <div class="post-meta-wrapper">
+                                <div class="post-meta">
+                                    <div class="content">
+                                        <h6 class="post-author-name">
+                                            <a class="hover-flip-item-wrapper" href="{% url 'account:author' post.user.username %}">
+                                                <span class="hover-flip-item">
+                                                    <span data-text="{{post.user.profile.full_name}}">{{post.user.profile.full_name}}</span>
+                                                </span>
+                                            </a>
+                                        </h6>
+                                        <ul class="post-meta-list">
+                                            <li>{{post.jcreated}}</li>
+                                            <li>{{post.visit_count.count}} بازدید</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Post List  -->
+                    {% endfor %}
+                </div>
+                <div class="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
+                    <!-- Start Sidebar Area  -->
+                    <div class="sidebar-inner">
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_categories mb--30">
+                            <ul>
+                                {% for category in categories %}
+                                <li class="cat-item">
+                                    <a href="{{category.get_absolute_url}}" class="inner">
+                                        <div class="content">
+                                            <h5 class="title">{{category.title}}</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_search mb--30">
+                            <h5 class="widget-title">جستجو</h5>
+                            <form action="{% url 'home:search' %}">
+                                <div class="axil-search form-group">
+                                    <button type="submit" class="search-button"><i class="fal fa-search"></i></button>
+                                    <input type="text" name="search" class="form-control" placeholder="جستجو">
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_postlist mb--30">
+                            <h5 class="widget-title">پر بازدید ترین ها</h5>
+                            <!-- Start Post List  -->
+                            <div class="post-medium-block">
+                                {% for post in most_visited_posts %}
+                                <!-- Start Single Post  -->
+                                <div class="content-block post-medium mb--20">
+                                    <div class="post-thumbnail">
+                                        <a href="post-details.html">
+                                            <img src="{{post.image.url}}" alt="Post Images">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h6 class="title"><a href="post-details.html">{{post.title}}</a></h6>
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list">
+                                                <li>{{post.jcreated}}</li>
+                                                <li>{{post.visit_count.count}} بازدید</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+                                {% endfor %}
+
+                            </div>
+                            <!-- End Post List  -->
+
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_instagram mb--30">
+                            <h5 class="widget-title">اینستاگرام</h5>
+                            <!-- Start Post List  -->
+                            <ul class="instagram-post-list-wrapper">
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-01.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-02.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-03.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-04.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-05.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                                <li class="instagram-post-list">
+                                    <a href="#">
+                                        <img src="{% static 'assets/images/small-images/instagram-06.jpg' %}" alt="Instagram Images">
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Post List  -->
+                        </div>
+                        <!-- End Single Widget  -->
+                    </div>
+                    <!-- End Sidebar Area  -->
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Post List Wrapper  -->
+
+{% endblock content %}

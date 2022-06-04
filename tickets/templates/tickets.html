@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% block title %}تماس با ما{% endblock title %}
+
+{% block content %}
+
+    <!-- Start Banner Area  -->
+    <div class="axil-banner banner-style-1 bg_image bg_image--3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner">
+                        <h1 class="title">تماس با ما</h1>
+                        <p class="description">در هر زمانی که به ما نیاز داشتید ما پاسخگو هستیم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner Area  -->
+
+    <!-- Start Post List Wrapper  -->
+    <div class="axil-post-list-area axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-xl-8">
+                    <!-- Start About Area  -->
+                    <div class="axil-about-us">
+                        <!-- Start Contact Form  -->
+                        <div class="axil-section-gapTop axil-contact-form-area">
+                            <h4 class="title mb--10">ارسال پیام به ما</h4>
+                            <p class="b3 mb--30">آدرس ایمیل شما منتشر نخواهد شد. همه موارد لازم هستند</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{form.choice}}
+                                {{form.body}}
+                                <br/>
+                                <div class="col-12">
+                                    <div class="form-submit">
+                                        <button type="submit" class="axil-button button-rounded btn-primary">ثبت</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End Contact Form  -->
+                    </div>
+                    <!-- End About Area  -->
+                </div>
+                <div class="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
+                    <!-- Start Sidebar Area  -->
+                    <div class="sidebar-inner">
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_categories mb--30">
+                            <ul>
+                                <li class="cat-item">
+                                    <a href="#" class="inner">
+                                        <div class="thumbnail">
+                                            <img src="assets/images/post-images/category-image-01.jpg" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title">فناوری</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#" class="inner">
+                                        <div class="thumbnail">
+                                            <img src="assets/images/post-images/category-image-02.jpg" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title">استایل</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#" class="inner">
+                                        <div class="thumbnail">
+                                            <img src="assets/images/post-images/category-image-03.jpg" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title">سفر</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#" class="inner">
+                                        <div class="thumbnail">
+                                            <img src="assets/images/post-images/category-image-04.jpg" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title"> خوراک</h5>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_search mb--30">
+                            <h5 class="widget-title">جستجو</h5>
+                            <form action="#">
+                                <div class="axil-search form-group">
+                                    <button type="submit" class="search-button"><i class="fal fa-search"></i></button>
+                                    <input type="text" class="form-control" placeholder="جستجو">
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_postlist mb--30">
+                            <h5 class="widget-title">محبوب ترین ها</h5>
+                            <!-- Start Post List  -->
+                            <div class="post-medium-block">
+
+                                <!-- Start Single Post  -->
+                                <div class="content-block post-medium mb--20">
+                                    <div class="post-thumbnail">
+                                        <a href="post-details.html">
+                                            <img src="assets/images/small-images/blog-sm-01.jpg" alt="Post Images">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h6 class="title"><a href="post-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</a></h6>
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list">
+                                                <li>17 فروردین 1400</li>
+                                                <li>300 هزار بازدید</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+
+                                <!-- Start Single Post  -->
+                                <div class="content-block post-medium mb--20">
+                                    <div class="post-thumbnail">
+                                        <a href="post-details.html">
+                                            <img src="assets/images/small-images/blog-sm-02.jpg" alt="Post Images">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h6 class="title"><a href="post-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</a></h6>
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list">
+                                                <li>17 فروردین 1400</li>
+                                                <li>300 هزار بازدید</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+
+                                <!-- Start Single Post  -->
+                                <div class="content-block post-medium mb--20">
+                                    <div class="post-thumbnail">
+                                        <a href="post-details.html">
+                                            <img src="assets/images/small-images/blog-sm-03.jpg" alt="Post Images">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h6 class="title"><a href="post-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</a></h6>
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list">
+                                                <li>17 فروردین 1400</li>
+                                                <li>300 هزار بازدید</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+
+                            </div>
+                            <!-- End Post List  -->
+
+                        </div>
+                        <!-- End Single Widget  -->
+
+                        <!-- Start Single Widget  -->
+                        <div class="axil-single-widget widget widget_social mb--30">
+                            <h5 class="widget-title">در فضای مجازی ما رو همراهی کنید</h5>
+                            <!-- Start Post List  -->
+                            <ul class="social-icon md-size justify-content-center">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-slack"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                            <!-- End Post List  -->
+                        </div>
+                        <!-- End Single Widget  -->
+                    </div>
+                    <!-- End Sidebar Area  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Post List Wrapper  -->
+
+{% endblock content %}

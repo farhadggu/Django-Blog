@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}لیست تصاویر{% endblock title %}
+
+
+{% block content %}
+
+<table class="table bg-white container mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">نام تصویر</th>
+        <th scope="col">حجم فایل</th>
+        <th scope="col">دانلود</th>
+        <th scope="col">حذف</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in objects %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{obj.Key}}</td>
+        <td>{{obj.Size|filesizeformat}}</td>
+        <td><a style="color:blue;" href="{% url 'home:download_obj_bucket' obj.Key %}">دانلود</a></td>
+        <td><a style="color:red;" href="{% url 'home:delete_obj_bucket' obj.Key %}">حذف</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
